@@ -2,8 +2,13 @@ from pydantic import BaseModel, Field, AfterValidator, BaseModel, ValidationErro
 
 class ContactoCliente(BaseModel):
     nombre: str = Field(description="Nombre completo del cliente", min_length=2)
+    email: str = Field(description="Email del cliente")
+    intencion: str = Field(description="Intención principal declarada por el cliente")
 
     @field_validator("email")
-    
-    contacto: str = Field(description="Forma de contacto con el cliente")
-    intencion: str = Field(description="Intención principal declarada por el cliente")
+    @classmethod
+    def is_email(cls, value):
+        if '@' and '.' not in value:
+            raise ValueError("no es un email")
+        return value
+        
