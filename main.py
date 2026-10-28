@@ -1,7 +1,7 @@
 from pydantic import ValidationError
 from src.cliente_ollama import extraer_contacto
 
-mensaje = "Hola, soy Laura García. Me interesa conocer precios de pavimentos para exterior. Mi temail es laura@empersa.com"
+mensaje = "Hola, soy Laura García. Me interesa conocer precios de pavimentos para exterior. Mi email es laura@empersa.com"
 
 print("holaaa")
 try:
