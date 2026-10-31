@@ -43,7 +43,7 @@ def extraer_contacto(texto_usuario: str) -> ContactoCliente:
 
 
         response.raise_for_status()
-    except httpx.HTTºPError as e:
+    except httpx.HTTPError as e:
         # Error de comunicación con la infraestructura
         raise ConnectionError(f"Error de comunicación con Ollama: {e}") from e
 
