@@ -1,4 +1,4 @@
-from pydantic import BaseModel, Field, AfterValidator, BaseModel, ValidationError
+from pydantic import BaseModel, Field, ValidationError, field_validator
 
 class ContactoCliente(BaseModel):
     nombre: str = Field(description="Nombre completo del cliente", min_length=2)
@@ -12,3 +12,17 @@ class ContactoCliente(BaseModel):
             raise ValueError("no es un email")
         return value
         
+    @field_validator("intencion")
+    @classmethod
+    def validar_intencion(cls, value):
+        valores = {"consulta", "compra", "soporte"}
+        print(value)
+        if value not in valores:
+            raise ValidationError("La intención que devuelve el modelo no esta dentro de los valores consulta, compra ni soporte")
+        return value
+
+
+
+
+
+
